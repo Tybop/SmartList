@@ -1,4 +1,4 @@
-package com.csci448.tcranor.criminalintent;
+package com.csci448.tcranor.smartlist;
 
 import android.content.Context;
 import android.content.Intent;

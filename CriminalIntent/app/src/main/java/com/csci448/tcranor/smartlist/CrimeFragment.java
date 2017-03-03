@@ -1,4 +1,4 @@
-package com.csci448.tcranor.criminalintent;
+package com.csci448.tcranor.smartlist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
