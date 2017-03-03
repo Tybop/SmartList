@@ -11,4 +11,8 @@
         <!--android:id="@+id/menu_item_show_subtitle"-->
         <!--android:title="@string/show_subtitle"-->
         <!--app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/menu_item_sort_notes"
+        android:title="@string/sort_notes"
+        app:showAsAction="ifRoom|withText"/>
 </menu>

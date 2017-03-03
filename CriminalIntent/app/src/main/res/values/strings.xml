@@ -8,4 +8,5 @@
     <string name="details_picker_title">Details: </string>
     <string name="new_note">New To-Do</string>
     <string name="show_subtitle">Subtitle</string>
+    <string name="sort_notes">Sort</string>
 </resources>
