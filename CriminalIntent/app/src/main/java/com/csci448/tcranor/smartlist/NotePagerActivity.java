@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,20 +17,20 @@ import java.util.UUID;
  * Created by Tyler's PC on 2/15/2017.
  */
 
-public class NotePagerActivity extends FragmentActivity {
+public class NotePagerActivity extends AppCompatActivity {
 
     private static final String EXTRA_NOTE_ID = "com.csci448.tybrown.criminalintent.note_id";
     private ViewPager mViewPager;
     private List<Note> mNotes;
 
-    public static Intent newIntent(Context packageContext, UUID noteId){
+    public static Intent newIntent(Context packageContext, UUID noteId) {
         Intent intent = new Intent(packageContext, NotePagerActivity.class);
         intent.putExtra(EXTRA_NOTE_ID, noteId);
         return intent;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_pager);
 
@@ -52,8 +53,8 @@ public class NotePagerActivity extends FragmentActivity {
             }
         });
 
-        for (int i = 0; i < mNotes.size(); i++){
-            if (mNotes.get(i).getId().equals(noteId)){
+        for (int i = 0; i < mNotes.size(); i++) {
+            if (mNotes.get(i).getId().equals(noteId)) {
                 mViewPager.setCurrentItem(i);
                 break;
             }

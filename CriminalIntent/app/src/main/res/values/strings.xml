@@ -2,10 +2,11 @@
     <string name="app_name">SmartList</string>
     <string name="note_title_hint">Enter a title for your To-Do.</string>
     <string name="note_title_label">Title</string>
-    <string name="note_details_hint">Enter the details of you To-Do.</string>
+    <string name="note_details_hint">Enter the details of your To-Do.</string>
     <string name="note_details_label">Details</string>
     <string name="note_completed_label">Completed</string>
     <string name="details_picker_title">Details: </string>
     <string name="new_note">New To-Do</string>
     <string name="show_subtitle">Subtitle</string>
+    <string name="sort_notes">Sort</string>
 </resources>
