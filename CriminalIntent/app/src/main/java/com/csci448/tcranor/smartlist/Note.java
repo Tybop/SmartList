@@ -25,7 +25,7 @@ public class Note {
         mDateEdited = dateEdited;
     }
 
-    
+
     public Date getDueDate() {
         return mDueDate;
     }
