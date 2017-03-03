@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Created by timot on 2/8/2017.
+ * Created by Tyler's PC on 2/8/2017.
  */
 
 public class Crime {
@@ -12,7 +12,16 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
-    private boolean solved;
+    private boolean mSolved;
+
+    public Crime(){
+        mId = UUID.randomUUID();
+        mDate = new Date();
+    }
+
+    public UUID getId() {
+        return mId;
+    }
 
     public String getTitle() {
         return mTitle;
@@ -22,17 +31,12 @@ public class Crime {
         mTitle = title;
     }
 
-    public UUID getId() {
-
-        return mId;
-    }
-
     public boolean isSolved() {
-        return solved;
+        return mSolved;
     }
 
     public void setSolved(boolean solved) {
-        this.solved = solved;
+        mSolved = solved;
     }
 
     public Date getDate() {
@@ -41,11 +45,5 @@ public class Crime {
 
     public void setDate(Date date) {
         mDate = date;
-    }
-
-    public Crime(){
-        mId=UUID.randomUUID();
-        mDate=new Date();
-
     }
 }

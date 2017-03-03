@@ -2,16 +2,15 @@ package com.csci448.tcranor.smartlist;
 
 import android.support.v4.app.Fragment;
 
+/**
+ * Created by Tyler's PC on 2/15/2017.
+ */
 
 public class CrimeListActivity extends SingleFragmentActivity {
 
     @Override
-    protected Fragment createFragment() {
+    protected Fragment createFragment(){
         return new CrimeListFragment();
     }
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.activity_masterdetail;
-    }
 }
