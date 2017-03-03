@@ -10,23 +10,23 @@ import java.util.UUID;
  * Created by Tyler's PC on 2/15/2017.
  */
 
-public class CrimeLab {
-    private static CrimeLab sCrimeLab;
+public class NoteHolder {
+    private static NoteHolder sNoteHolder;
     private List<Crime> mCrimes;
 
-    public static CrimeLab get(Context context){
-        if (sCrimeLab == null){
-            sCrimeLab = new CrimeLab(context);
+    public static NoteHolder get(Context context){
+        if (sNoteHolder == null){
+            sNoteHolder = new NoteHolder(context);
         }
-        return sCrimeLab;
+        return sNoteHolder;
     }
 
-    private CrimeLab(Context context){
+    private NoteHolder(Context context){
         mCrimes = new ArrayList<>();
         for (int i = 0; i < 100; i++){
             Crime crime = new Crime();
             crime.setTitle("Crime #" + i);
-            crime.setSolved(i%2 == 0);
+            crime.setCompleted(i%2 == 0);
             mCrimes.add(crime);
         }
     }

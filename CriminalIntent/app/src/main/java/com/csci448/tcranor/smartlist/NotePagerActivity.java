@@ -16,14 +16,14 @@ import java.util.UUID;
  * Created by Tyler's PC on 2/15/2017.
  */
 
-public class CrimePagerActivity extends FragmentActivity {
+public class NotePagerActivity extends FragmentActivity {
 
     private static final String EXTRA_CRIME_ID = "com.csci448.tybrown.criminalintent.crime_id";
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
 
     public static Intent newIntent(Context packageContext, UUID crimeId){
-        Intent intent = new Intent(packageContext, CrimePagerActivity.class);
+        Intent intent = new Intent(packageContext, NotePagerActivity.class);
         intent.putExtra(EXTRA_CRIME_ID, crimeId);
         return intent;
     }
@@ -31,19 +31,19 @@ public class CrimePagerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime_pager);
+        setContentView(R.layout.activity_note_pager);
 
         UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
 
-        mViewPager = (ViewPager) findViewById(R.id.activity_crime_pager_view_pager);
+        mViewPager = (ViewPager) findViewById(R.id.activity_note_pager_view_pager);
 
-        mCrimes = CrimeLab.get(this).getCrimes();
+        mCrimes = NoteHolder.get(this).getCrimes();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
                 Crime crime = mCrimes.get(position);
-                return CrimeFragment.newInstance(crime.getId());
+                return NoteFragment.newInstance(crime.getId());
             }
 
             @Override

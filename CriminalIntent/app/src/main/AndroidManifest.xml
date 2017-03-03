@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.csci448.tcranor.smartlist.CrimeListActivity">
+        <activity android:name="com.csci448.tcranor.smartlist.NoteListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -17,9 +17,9 @@
         </activity>
 
         <activity
-            android:name="com.csci448.tcranor.smartlist.CrimePagerActivity"
+            android:name="com.csci448.tcranor.smartlist.NotePagerActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.csci448.tcranor.smartlist.CrimeListActivity">
+            android:parentActivityName="com.csci448.tcranor.smartlist.NoteListActivity">
         </activity>
 
     </application>

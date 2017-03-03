@@ -1,6 +1,5 @@
 package com.csci448.tcranor.smartlist;
 
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -11,12 +10,12 @@ public class Crime {
 
     private UUID mId;
     private String mTitle;
-    private Date mDate;
-    private boolean mSolved;
+    private String mDetails;
+    private boolean mCompleted;
 
     public Crime(){
         mId = UUID.randomUUID();
-        mDate = new Date();
+        mDetails = new String();
     }
 
     public UUID getId() {
@@ -31,19 +30,19 @@ public class Crime {
         mTitle = title;
     }
 
-    public boolean isSolved() {
-        return mSolved;
+    public boolean isCompleted() {
+        return mCompleted;
     }
 
-    public void setSolved(boolean solved) {
-        mSolved = solved;
+    public void setCompleted(boolean completed) {
+        mCompleted = completed;
     }
 
-    public Date getDate() {
-        return mDate;
+    public String getDetails() {
+        return mDetails;
     }
 
-    public void setDate(Date date) {
-        mDate = date;
+    public void setDetails(String details) {
+        mDetails = details;
     }
 }
