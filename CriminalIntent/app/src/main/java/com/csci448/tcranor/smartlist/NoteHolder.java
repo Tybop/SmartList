@@ -37,6 +37,7 @@ public class NoteHolder {
         note.setDueDate(new Date());
         note.setUrgency(5);
         note.setGroup("General");
+        note.setDateEdited(new Date());
         mNotes.add(note);
 
     }

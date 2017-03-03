@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -56,6 +57,7 @@ public class NoteFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mNote.setTitle(s.toString());
+                mNote.setDateEdited(new Date());
             }
 
             @Override
@@ -75,6 +77,7 @@ public class NoteFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mNote.setDetails(s.toString());
+                mNote.setDateEdited(new Date());
             }
 
             @Override

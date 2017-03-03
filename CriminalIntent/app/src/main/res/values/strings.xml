@@ -9,4 +9,7 @@
     <string name="new_note">New To-Do</string>
     <string name="show_subtitle">Subtitle</string>
     <string name="sort_notes">Sort</string>
+    <string name="due_date_label">Due Date</string>
+    <string name="priority_label">Priority</string>
+    <string name="group_label">Group</string>
 </resources>
