@@ -15,34 +15,39 @@ public class NoteHolder {
     private static NoteHolder sNoteHolder;
     private List<Note> mNotes;
 
-    public static NoteHolder get(Context context){
-        if (sNoteHolder == null){
+    public static NoteHolder get(Context context) {
+        if (sNoteHolder == null) {
             sNoteHolder = new NoteHolder(context);
         }
         return sNoteHolder;
     }
 
-    private NoteHolder(Context context){
+
+    public void addNote(Note note) {
+        mNotes.add(note);
+    }
+
+    private NoteHolder(Context context) {
         mNotes = new ArrayList<>();
 
-            Note note = new Note();
-            note.setTitle("Example");
-            note.setCompleted(false);
-            note.setDetails("An example note.");
-            note.setDueDate(new Date());
-            note.setUrgency(5);
-            note.setGroup("General");
-            mNotes.add(note);
+        Note note = new Note();
+        note.setTitle("Example");
+        note.setCompleted(false);
+        note.setDetails("An example note.");
+        note.setDueDate(new Date());
+        note.setUrgency(5);
+        note.setGroup("General");
+        mNotes.add(note);
 
     }
 
-    public List<Note> getNotes(){
+    public List<Note> getNotes() {
         return mNotes;
     }
 
-    public Note getNote(UUID id){
-        for (Note c: mNotes){
-            if (c.getId().equals(id)){
+    public Note getNote(UUID id) {
+        for (Note c : mNotes) {
+            if (c.getId().equals(id)) {
                 return c;
             }
         }
