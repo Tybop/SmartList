@@ -19,15 +19,15 @@ import java.util.List;
 
 public class NoteListFragment extends Fragment {
 
-    private RecyclerView mCrimeRecyclerView;
-    private CrimeAdapter mAdapter;
+    private RecyclerView mNoteRecyclerView;
+    private NoteAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_note_list, container, false);
 
-        mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.note_recycler_view);
-        mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mNoteRecyclerView = (RecyclerView) view.findViewById(R.id.note_recycler_view);
+        mNoteRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         updateUI();
 
@@ -41,25 +41,25 @@ public class NoteListFragment extends Fragment {
     }
 
     private void updateUI(){
-        NoteHolder noteHolder = NoteHolder.get(getActivity());
-        List<Crime> crimes = noteHolder.getCrimes();
+        com.csci448.tcranor.smartlist.NoteHolder noteHolder = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity());
+        List<Note> notes = noteHolder.getNotes();
 
         if (mAdapter == null) {
-            mAdapter = new CrimeAdapter(crimes);
-            mCrimeRecyclerView.setAdapter(mAdapter);
+            mAdapter = new NoteAdapter(notes);
+            mNoteRecyclerView.setAdapter(mAdapter);
         }else{
             mAdapter.notifyDataSetChanged();
         }
     }
 
-    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class NoteHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private Crime mCrime;
+        private Note mNote;
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mSolvedCheckBox;
 
-        public CrimeHolder(View itemView){
+        public NoteHolder(View itemView){
             super(itemView);
 
             itemView.setOnClickListener(this);
@@ -70,44 +70,44 @@ public class NoteListFragment extends Fragment {
 
         }
 
-        public void bindCrime(Crime crime){
-            mCrime = crime;
-            mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDetails().toString());
-            mSolvedCheckBox.setChecked(mCrime.isCompleted());
+        public void bindNote(Note note){
+            mNote = note;
+            mTitleTextView.setText(mNote.getTitle());
+            mDateTextView.setText(mNote.getDetails().toString());
+            mSolvedCheckBox.setChecked(mNote.isCompleted());
         }
 
         @Override
         public void onClick(View v){
-            Intent intent = NotePagerActivity.newIntent(getActivity(), mCrime.getId());
+            Intent intent = NotePagerActivity.newIntent(getActivity(), mNote.getId());
             startActivity(intent);
         }
 
     }
 
-    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder>{
-        private List<Crime> mCrimes;
+    private class NoteAdapter extends RecyclerView.Adapter<NoteHolder>{
+        private List<Note> mNotes;
 
-        public CrimeAdapter(List<Crime> crimes){
-            mCrimes = crimes;
+        public NoteAdapter(List<Note> notes){
+            mNotes = notes;
         }
 
         @Override
-        public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        public NoteHolder onCreateViewHolder(ViewGroup parent, int viewType){
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             View view = layoutInflater.inflate(R.layout.list_item_note, parent, false);
-            return new CrimeHolder(view);
+            return new NoteHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(CrimeHolder holder, int position){
-            Crime crime = mCrimes.get(position);
-            holder.bindCrime(crime);
+        public void onBindViewHolder(NoteHolder holder, int position){
+            Note note = mNotes.get(position);
+            holder.bindNote(note);
         }
 
         @Override
         public int getItemCount(){
-            return mCrimes.size();
+            return mNotes.size();
         }
 
 

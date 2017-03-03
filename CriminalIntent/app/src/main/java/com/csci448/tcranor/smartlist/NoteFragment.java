@@ -20,15 +20,15 @@ import java.util.UUID;
 
 public class NoteFragment extends Fragment {
 
-    private static final String ARG_CRIME_ID = "crime_id";
-    private Crime mCrime;
+    private static final String ARG_NOTE_ID = "note_id";
+    private Note mNote;
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSovledCheckBox;
 
-    public static NoteFragment newInstance(UUID crimeId){
+    public static NoteFragment newInstance(UUID noteId){
         Bundle args = new Bundle();
-        args.putSerializable(ARG_CRIME_ID, crimeId);
+        args.putSerializable(ARG_NOTE_ID, noteId);
 
         NoteFragment fragment = new NoteFragment();
         fragment.setArguments(args);
@@ -38,8 +38,8 @@ public class NoteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
-        mCrime = NoteHolder.get(getActivity()).getCrime(crimeId);
+        UUID noteId = (UUID) getArguments().getSerializable(ARG_NOTE_ID);
+        mNote = NoteHolder.get(getActivity()).getNote(noteId);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class NoteFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
         mTitleField = (EditText)v.findViewById(R.id.note_title);
-        mTitleField.setText(mCrime.getTitle());
+        mTitleField.setText(mNote.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -56,7 +56,7 @@ public class NoteFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mCrime.setTitle(s.toString());
+                mNote.setTitle(s.toString());
             }
 
             @Override
@@ -66,15 +66,15 @@ public class NoteFragment extends Fragment {
         });
 
         mDateButton = (Button)v.findViewById(R.id.note_details);
-        mDateButton.setText(mCrime.getDetails().toString());
+        mDateButton.setText(mNote.getDetails().toString());
         mDateButton.setEnabled(false);
 
         mSovledCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
-        mSovledCheckBox.setChecked(mCrime.isCompleted());
+        mSovledCheckBox.setChecked(mNote.isCompleted());
         mSovledCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCrime.setCompleted(isChecked);
+                mNote.setCompleted(isChecked);
             }
         });
 

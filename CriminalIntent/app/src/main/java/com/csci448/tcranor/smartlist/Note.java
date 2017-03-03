@@ -6,14 +6,14 @@ import java.util.UUID;
  * Created by Tyler's PC on 2/8/2017.
  */
 
-public class Crime {
+public class Note {
 
     private UUID mId;
     private String mTitle;
     private String mDetails;
     private boolean mCompleted;
 
-    public Crime(){
+    public Note(){
         mId = UUID.randomUUID();
         mDetails = new String();
     }

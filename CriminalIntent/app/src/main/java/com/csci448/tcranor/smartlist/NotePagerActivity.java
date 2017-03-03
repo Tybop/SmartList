@@ -18,13 +18,13 @@ import java.util.UUID;
 
 public class NotePagerActivity extends FragmentActivity {
 
-    private static final String EXTRA_CRIME_ID = "com.csci448.tybrown.criminalintent.crime_id";
+    private static final String EXTRA_NOTE_ID = "com.csci448.tybrown.criminalintent.note_id";
     private ViewPager mViewPager;
-    private List<Crime> mCrimes;
+    private List<Note> mNotes;
 
-    public static Intent newIntent(Context packageContext, UUID crimeId){
+    public static Intent newIntent(Context packageContext, UUID noteId){
         Intent intent = new Intent(packageContext, NotePagerActivity.class);
-        intent.putExtra(EXTRA_CRIME_ID, crimeId);
+        intent.putExtra(EXTRA_NOTE_ID, noteId);
         return intent;
     }
 
@@ -33,27 +33,27 @@ public class NotePagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_pager);
 
-        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        UUID noteId = (UUID) getIntent().getSerializableExtra(EXTRA_NOTE_ID);
 
         mViewPager = (ViewPager) findViewById(R.id.activity_note_pager_view_pager);
 
-        mCrimes = NoteHolder.get(this).getCrimes();
+        mNotes = NoteHolder.get(this).getNotes();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
-                Crime crime = mCrimes.get(position);
-                return NoteFragment.newInstance(crime.getId());
+                Note note = mNotes.get(position);
+                return NoteFragment.newInstance(note.getId());
             }
 
             @Override
             public int getCount() {
-                return mCrimes.size();
+                return mNotes.size();
             }
         });
 
-        for (int i = 0; i < mCrimes.size(); i++){
-            if (mCrimes.get(i).getId().equals(crimeId)){
+        for (int i = 0; i < mNotes.size(); i++){
+            if (mNotes.get(i).getId().equals(noteId)){
                 mViewPager.setCurrentItem(i);
                 break;
             }

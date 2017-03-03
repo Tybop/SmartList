@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class NoteHolder {
     private static NoteHolder sNoteHolder;
-    private List<Crime> mCrimes;
+    private List<Note> mNotes;
 
     public static NoteHolder get(Context context){
         if (sNoteHolder == null){
@@ -22,21 +22,21 @@ public class NoteHolder {
     }
 
     private NoteHolder(Context context){
-        mCrimes = new ArrayList<>();
+        mNotes = new ArrayList<>();
         for (int i = 0; i < 100; i++){
-            Crime crime = new Crime();
-            crime.setTitle("Crime #" + i);
-            crime.setCompleted(i%2 == 0);
-            mCrimes.add(crime);
+            Note note = new Note();
+            note.setTitle("Note #" + i);
+            note.setCompleted(i%2 == 0);
+            mNotes.add(note);
         }
     }
 
-    public List<Crime> getCrimes(){
-        return mCrimes;
+    public List<Note> getNotes(){
+        return mNotes;
     }
 
-    public Crime getCrime(UUID id){
-        for (Crime c: mCrimes){
+    public Note getNote(UUID id){
+        for (Note c: mNotes){
             if (c.getId().equals(id)){
                 return c;
             }
