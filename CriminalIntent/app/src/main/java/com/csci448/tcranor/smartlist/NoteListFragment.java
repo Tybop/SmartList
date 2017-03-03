@@ -63,7 +63,7 @@ public class NoteListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_new_note:
                 Note note = new Note();
-                NoteHolder.get(getActivity()).addNote(note);
+                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).addNote(note);
                 Intent intent = NotePagerActivity.newIntent(getActivity(), note.getId());
                 startActivity(intent);
                 return true;
