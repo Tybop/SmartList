@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -23,8 +22,8 @@ public class NoteFragment extends Fragment {
     private static final String ARG_NOTE_ID = "note_id";
     private Note mNote;
     private EditText mTitleField;
-    private Button mDateButton;
-    private CheckBox mSovledCheckBox;
+    private EditText mDetailsField;
+    private CheckBox mCompletedCheckBox;
 
     public static NoteFragment newInstance(UUID noteId){
         Bundle args = new Bundle();
@@ -65,13 +64,28 @@ public class NoteFragment extends Fragment {
             }
         });
 
-        mDateButton = (Button)v.findViewById(R.id.note_details);
-        mDateButton.setText(mNote.getDetails().toString());
-        mDateButton.setEnabled(false);
+        mDetailsField = (EditText) v.findViewById(R.id.note_details);
+        mDetailsField.setText(mNote.getDetails().toString());
+        mDetailsField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //Left Blank
+            }
 
-        mSovledCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
-        mSovledCheckBox.setChecked(mNote.isCompleted());
-        mSovledCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mNote.setDetails(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Also Blank
+            }
+        });
+
+        mCompletedCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
+        mCompletedCheckBox.setChecked(mNote.isCompleted());
+        mCompletedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mNote.setCompleted(isChecked);

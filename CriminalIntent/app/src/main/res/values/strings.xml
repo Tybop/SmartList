@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SmartList</string>
     <string name="note_title_hint">Enter a title for your To-Do.</string>
-    <string name="note_title_label">Enter a title for the To-Do.</string>
+    <string name="note_title_label">Title</string>
+    <string name="note_details_hint">Enter the details of you To-Do.</string>
     <string name="note_details_label">Details</string>
     <string name="note_completed_label">Completed</string>
     <string name="details_picker_title">Details: </string>

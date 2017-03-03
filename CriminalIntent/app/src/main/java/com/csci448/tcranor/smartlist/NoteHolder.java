@@ -3,6 +3,7 @@ package com.csci448.tcranor.smartlist;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,12 +24,16 @@ public class NoteHolder {
 
     private NoteHolder(Context context){
         mNotes = new ArrayList<>();
-        for (int i = 0; i < 100; i++){
+
             Note note = new Note();
-            note.setTitle("Note #" + i);
-            note.setCompleted(i%2 == 0);
+            note.setTitle("Example");
+            note.setCompleted(false);
+            note.setDetails("An example note.");
+            note.setDueDate(new Date());
+            note.setUrgency(5);
+            note.setGroup("General");
             mNotes.add(note);
-        }
+
     }
 
     public List<Note> getNotes(){

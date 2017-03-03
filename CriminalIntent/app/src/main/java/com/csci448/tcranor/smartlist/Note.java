@@ -1,5 +1,6 @@
 package com.csci448.tcranor.smartlist;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -11,6 +12,44 @@ public class Note {
     private UUID mId;
     private String mTitle;
     private String mDetails;
+    private Date mDueDate;
+    private int mUrgency;
+    private String mGroup;
+    private Date mDateEdited;
+
+    public Date getDateEdited() {
+        return mDateEdited;
+    }
+
+    public void setDateEdited(Date dateEdited) {
+        mDateEdited = dateEdited;
+    }
+
+    
+    public Date getDueDate() {
+        return mDueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        mDueDate = dueDate;
+    }
+
+    public int getUrgency() {
+        return mUrgency;
+    }
+
+    public void setUrgency(int urgency) {
+        mUrgency = urgency;
+    }
+
+    public String getGroup() {
+        return mGroup;
+    }
+
+    public void setGroup(String group) {
+        mGroup = group;
+    }
+
     private boolean mCompleted;
 
     public Note(){
