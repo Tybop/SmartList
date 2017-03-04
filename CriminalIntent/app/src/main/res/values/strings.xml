@@ -13,4 +13,6 @@
     <string name="group_label">Group</string>
     <string name="group_hint">Type what group you\'d like this To-Do in.</string>
     <string name="submit_button">Submit</string>
+    <string name="due_date_hint">Click to set date.</string>
+    <string name="due_time_hint">Click to set time.</string>
 </resources>

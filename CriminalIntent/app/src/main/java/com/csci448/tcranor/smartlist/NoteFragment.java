@@ -1,5 +1,7 @@
 package com.csci448.tcranor.smartlist;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -7,12 +9,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,8 +31,9 @@ public class NoteFragment extends Fragment {
     private EditText mTitleField;
     private EditText mDetailsField;
     private EditText mGroupField;
-    private DatePicker mDueDate;
-    private TimePicker mDueTime;
+    private EditText mDueDate;
+    private EditText mDueTime;
+
 
     public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
@@ -96,7 +101,7 @@ public class NoteFragment extends Fragment {
                 //Also Blank
             }
         });
-        
+
         mGroupField = (EditText) v.findViewById(R.id.note_group);
         mGroupField.setText(mNote.getGroup().toString());
         mGroupField.addTextChangedListener(new TextWatcher() {
@@ -118,9 +123,14 @@ public class NoteFragment extends Fragment {
             }
         });
 
-        mDueDate = (DatePicker) v.findViewById(R.id.due_date_picker);
-
-
+        mDueDate = (EditText) v.findViewById(R.id.due_date_picker);
+        mDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dateFragment = new DateFragment();
+                //dateFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
 
         return v;
     }
