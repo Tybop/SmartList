@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -29,8 +32,8 @@ public class NoteFragment extends Fragment {
     private EditText mTitleField;
     private EditText mDetailsField;
     private EditText mGroupField;
-    private EditText mDueDate;
-    private EditText mDueTime;
+    private DatePicker mDueDate;
+    private Button mSubmitButton;
 
 
 
@@ -121,6 +124,17 @@ public class NoteFragment extends Fragment {
             }
         });
 
+        mDueDate = (DatePicker) v.findViewById(R.id.due_date_picker);
+
+        mSubmitButton = (Button) v.findViewById(R.id.date_submit_button);
+        mSubmitButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view){
+                Date tmpDate = new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth());
+                mNote.setDueDate(tmpDate);
+            }
+        });
 
         return v;
     }
