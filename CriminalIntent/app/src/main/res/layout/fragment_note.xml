@@ -49,15 +49,13 @@
             android:id="@+id/due_date_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:hint="@string/due_date_hint"/>
+            android:layout_marginLeft="16dp"/>
 
         <EditText
             android:id="@+id/due_time_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:hint="@string/due_time_hint"/>
+            android:layout_marginLeft="16dp"/>
 
     </LinearLayout>
 

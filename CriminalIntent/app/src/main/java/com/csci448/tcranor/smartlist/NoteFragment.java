@@ -122,17 +122,6 @@ public class NoteFragment extends Fragment {
         });
 
 
-
-
-        mDueDate = (EditText) v.findViewById(R.id.due_date_picker);
-        mDueDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment dateFragment = new DateFragment();
-                //dateFragment.show(getSupportFragmentManager(), "datePicker");
-            }
-        });
-
         return v;
     }
 
