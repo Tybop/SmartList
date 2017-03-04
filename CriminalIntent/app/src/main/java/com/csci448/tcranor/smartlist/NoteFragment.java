@@ -9,11 +9,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.sql.Time;
@@ -34,6 +37,7 @@ public class NoteFragment extends Fragment {
     private EditText mGroupField;
     private DatePicker mDueDate;
     private Button mSubmitButton;
+    private Spinner mPrioritySpinner;
 
 
 
@@ -135,6 +139,13 @@ public class NoteFragment extends Fragment {
                 mNote.setDueDate(tmpDate);
             }
         });
+
+
+        mPrioritySpinner = (Spinner) v.findViewById(R.id.priority_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.priority_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mPrioritySpinner.setAdapter(adapter);
+        mNote.setPriority((int)mPrioritySpinner.getSelectedItem());
 
         return v;
     }

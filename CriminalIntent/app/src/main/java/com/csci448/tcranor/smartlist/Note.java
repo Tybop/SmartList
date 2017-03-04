@@ -1,6 +1,5 @@
 package com.csci448.tcranor.smartlist;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,7 +13,7 @@ public class Note {
     private String mTitle;
     private String mDetails;
     private Date mDueDate;
-    private int mUrgency;
+    private int mPriority;
     private String mGroup;
     private Date mDateEdited;
 
@@ -35,12 +34,12 @@ public class Note {
         mDueDate = dueDate;
     }
 
-    public int getUrgency() {
-        return mUrgency;
+    public int getPriority() {
+        return mPriority;
     }
 
-    public void setUrgency(int urgency) {
-        mUrgency = urgency;
+    public void setPriority(int priority) {
+        mPriority = priority;
     }
 
     public String getGroup() {
