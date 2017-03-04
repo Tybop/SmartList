@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class NotePagerActivity extends AppCompatActivity {
 
-    private static final String EXTRA_NOTE_ID = "com.csci448.tybrown.criminalintent.note_id";
+    private static final String EXTRA_NOTE_ID = "com.csci448.tcranor.criminalintent.note_id";
     private ViewPager mViewPager;
     private List<Note> mNotes;
 

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class NoteActivity extends SingleFragmentActivity {
 
-    private static final String EXTRA_CRIME_ID = "com.csci448.tybrown.criminalintent.crime_id";
+    private static final String EXTRA_CRIME_ID = "com.csci448.tcranor.criminalintent.crime_id";
 
     public static Intent newIntent(Context packageContext, UUID crimeID){
         Intent intent = new Intent(packageContext, NoteActivity.class);

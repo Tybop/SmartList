@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.csci448.tcranor.smartlist.Note;
+import com.csci448.tcranor.smartlist.database.NoteDbSchema.NoteTable;
 
 import java.util.Date;
 import java.util.UUID;
@@ -18,10 +19,10 @@ public class NoteCursorWrapper extends CursorWrapper {
     }
 
     public Note getNote() {
-        String uuidString = getString(getColumnIndex(NoteDbSchema.NoteTable.Cols.UUID));
-        String title = getString(getColumnIndex(NoteDbSchema.NoteTable.Cols.TITLE));
-        long date = getLong(getColumnIndex(NoteDbSchema.NoteTable.Cols.DATE));
-        int isCompleted = getInt(getColumnIndex(NoteDbSchema.NoteTable.Cols.SOLVED));
+        String uuidString = getString(getColumnIndex(NoteTable.Cols.UUID));
+        String title = getString(getColumnIndex(NoteTable.Cols.TITLE));
+        long date = getLong(getColumnIndex(NoteTable.Cols.DATE));
+        int isCompleted = getInt(getColumnIndex(NoteTable.Cols.SOLVED));
 
         Note note = new Note(UUID.fromString(uuidString));
         note.setTitle(title);
