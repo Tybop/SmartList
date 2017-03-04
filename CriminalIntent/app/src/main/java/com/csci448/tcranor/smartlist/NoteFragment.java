@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -33,6 +31,7 @@ public class NoteFragment extends Fragment {
     private EditText mGroupField;
     private EditText mDueDate;
     private EditText mDueTime;
+
 
 
     public static NoteFragment newInstance(UUID noteId) {
@@ -105,7 +104,6 @@ public class NoteFragment extends Fragment {
         mGroupField = (EditText) v.findViewById(R.id.note_group);
         mGroupField.setText(mNote.getGroup().toString());
         mGroupField.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Left Blank
@@ -122,6 +120,9 @@ public class NoteFragment extends Fragment {
                 //Also Blank
             }
         });
+
+
+
 
         mDueDate = (EditText) v.findViewById(R.id.due_date_picker);
         mDueDate.setOnClickListener(new View.OnClickListener() {
