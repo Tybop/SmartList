@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -28,6 +31,8 @@ public class NoteFragment extends Fragment {
     private EditText mGroupField;
     private CheckBox mCompletedCheckBox;
     private Spinner mPrioritySpinner;
+    private DatePicker mDueDate;
+    private Button mSubmitButton;
 
     public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
@@ -97,7 +102,8 @@ public class NoteFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mNote.setTitle(s.toString());
+                mNote.setGroup(s.toString());
+                mNote.setDateEdited(new Date());
             }
 
             @Override
@@ -107,11 +113,25 @@ public class NoteFragment extends Fragment {
         });
 
         mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
+        //mPrioritySpinner.setPrompt(Integer.toString(mNote.getPriority())); //TODO: Implement spinner showing note priority
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.priority_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mPrioritySpinner.setAdapter(adapter);
         mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
+
+        mDueDate = (DatePicker) v.findViewById(R.id.note_date);
+        if (mNote.getDueDate() != null) {mDueDate.updateDate(mNote.getDueDate().getYear(), mNote.getDueDate().getMonth(), mNote.getDueDate().getDay());} //TODO: fix the day skipping bug
+        mSubmitButton = (Button) v.findViewById(R.id.submit_button);
+        mSubmitButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                mNote.setDueDate(new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth()));
+            }
+        });
+
+
+        mNote.setDateEdited(new Date());
 
         return v;
     }
