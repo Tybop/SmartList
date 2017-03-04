@@ -26,7 +26,7 @@ public class NoteFragment extends Fragment {
     private EditText mDetailsField;
     private CheckBox mCompletedCheckBox;
 
-    public static NoteFragment newInstance(UUID noteId){
+    public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_NOTE_ID, noteId);
 
@@ -43,10 +43,17 @@ public class NoteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public void onPause() {
+        super.onPause();
+
+        NoteHolder.get(getActivity()).updateNote(mNote);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mTitleField = (EditText)v.findViewById(R.id.note_title);
+        mTitleField = (EditText) v.findViewById(R.id.note_title);
         mTitleField.setText(mNote.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,7 +93,7 @@ public class NoteFragment extends Fragment {
             }
         });
 
-        mCompletedCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
+        mCompletedCheckBox = (CheckBox) v.findViewById(R.id.note_completed);
         mCompletedCheckBox.setChecked(mNote.isCompleted());
         mCompletedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

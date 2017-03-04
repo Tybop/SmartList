@@ -80,6 +80,7 @@ public class NoteListFragment extends Fragment {
             mAdapter = new NoteAdapter(notes);
             mNoteRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setNotes(notes);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -142,6 +143,9 @@ public class NoteListFragment extends Fragment {
             return mNotes.size();
         }
 
+        public void setNotes(List<Note> notes) {
+            mNotes = notes;
+        }
 
     }
 
