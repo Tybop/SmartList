@@ -9,4 +9,16 @@
     <string name="new_note">New To-Do</string>
     <string name="show_subtitle">Subtitle</string>
     <string name="sort_notes">Sort</string>
+    <string name="note_group_label">Group</string>
+    <string name="note_group_hint">Type the group for your To-Do.</string>
+    <string name="note_priority_label">Priority Level</string>
+    <string name="date_submit_button">Submit</string>
+    <string-array name="priority_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
 </resources>
