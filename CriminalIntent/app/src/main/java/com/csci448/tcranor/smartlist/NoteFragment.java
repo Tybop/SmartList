@@ -25,10 +25,11 @@ public class NoteFragment extends Fragment {
     private Note mNote;
     private EditText mTitleField;
     private EditText mDetailsField;
+    private EditText mGroupField;
     private CheckBox mCompletedCheckBox;
     private Spinner mPrioritySpinner;
 
-    public static NoteFragment newInstance(UUID noteId){
+    public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_NOTE_ID, noteId);
 
@@ -45,10 +46,10 @@ public class NoteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mTitleField = (EditText)v.findViewById(R.id.note_title);
+        mTitleField = (EditText) v.findViewById(R.id.note_title);
         mTitleField.setText(mNote.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,6 +87,19 @@ public class NoteFragment extends Fragment {
             }
         });
 
+        mGroupField = (EditText) v.findViewById(R.id.note_group);
+        mGroupField.setText(mNote.getGroup());
+        mGroupField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //Left Blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mNote.setTitle(s.toString());
+            }
+
 
         mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -93,6 +107,12 @@ public class NoteFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mPrioritySpinner.setAdapter(adapter);
         mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Also Blank
+            }
+        });
 
         return v;
     }
