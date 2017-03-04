@@ -30,7 +30,7 @@ public class NoteFragment extends Fragment {
     private DatePicker mDueDate;
     private TimePicker mDueTime;
 
-    public static NoteFragment newInstance(UUID noteId){
+    public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_NOTE_ID, noteId);
 
@@ -47,10 +47,17 @@ public class NoteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public void onPause() {
+        super.onPause();
+
+        NoteHolder.get(getActivity()).updateNote(mNote);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mTitleField = (EditText)v.findViewById(R.id.note_title);
+        mTitleField = (EditText) v.findViewById(R.id.note_title);
         mTitleField.setText(mNote.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,10 +96,11 @@ public class NoteFragment extends Fragment {
                 //Also Blank
             }
         });
-
+        
         mGroupField = (EditText) v.findViewById(R.id.note_group);
         mGroupField.setText(mNote.getGroup().toString());
         mGroupField.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Left Blank
