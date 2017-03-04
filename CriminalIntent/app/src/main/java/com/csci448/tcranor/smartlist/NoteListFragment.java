@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class NoteListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_new_note:
                 Note note = new Note();
-                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).addNote(note);
+                NoteTemplate.get(getActivity()).addNote(note);
                 Intent intent = NotePagerActivity.newIntent(getActivity(), note.getId());
                 startActivity(intent);
                 return true;
@@ -73,14 +74,14 @@ public class NoteListFragment extends Fragment {
     }
 
     private void updateUI() {
-        com.csci448.tcranor.smartlist.NoteHolder noteHolder = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity());
+        NoteTemplate noteHolder = NoteTemplate.get(getActivity());
         List<Note> notes = noteHolder.getNotes();
 
         if (mAdapter == null) {
             mAdapter = new NoteAdapter(notes);
             mNoteRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.setNotes(notes);
+            //mAdapter.setNotes(notes);
             mAdapter.notifyDataSetChanged();
         }
     }

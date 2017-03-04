@@ -1,7 +1,5 @@
 package com.csci448.tcranor.smartlist;
 
-import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -9,18 +7,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 
-import java.sql.Time;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -54,15 +46,15 @@ public class NoteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID noteId = (UUID) getArguments().getSerializable(ARG_NOTE_ID);
-        mNote = NoteHolder.get(getActivity()).getNote(noteId);
+        mNote = NoteTemplate.get(getActivity()).getNote(noteId);
     }
 
-    @Override
+/*    @Override
     public void onPause() {
         super.onPause();
 
-        NoteHolder.get(getActivity()).updateNote(mNote);
-    }
+        NoteTemplate.get(getActivity()).updateNote(mNote);
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

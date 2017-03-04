@@ -1,13 +1,6 @@
 package com.csci448.tcranor.smartlist;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.csci448.tcranor.smartlist.database.NoteBaseHelper;
-import com.csci448.tcranor.smartlist.database.NoteCursorWrapper;
-import com.csci448.tcranor.smartlist.database.NoteDbSchema.NoteTable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,28 +11,29 @@ import java.util.UUID;
  * Created by Tyler's PC on 2/15/2017.
  */
 
-public class NoteHolder {
-    private static NoteHolder sNoteHolder;
-    private Context mContext;
-    private SQLiteDatabase mDatabase;
+public class NoteTemplate {
+    private static NoteTemplate sNoteTemplate;
+    //private Context mContext;
+    //private SQLiteDatabase mDatabase;
     private List<Note> mNotes;
 
-    public static NoteHolder get(Context context) {
-        if (sNoteHolder == null) {
-            sNoteHolder = new NoteHolder(context);
+    public static NoteTemplate get(Context context) {
+        if (sNoteTemplate == null) {
+            sNoteTemplate = new NoteTemplate(context);
         }
-        return sNoteHolder;
+        return sNoteTemplate;
     }
 
 
     public void addNote(Note note) {
-        ContentValues values = getContentValues(note);
-        mDatabase.insert(NoteTable.NAME, null, values);
+        //ContentValues values = getContentValues(note);
+        //mDatabase.insert(NoteTable.NAME, null, values);
+        mNotes.add(note);
     }
 
-    private NoteHolder(Context context) {
-        mContext = context.getApplicationContext();
-        mDatabase = new NoteBaseHelper(mContext).getWritableDatabase();
+    private NoteTemplate(Context context) {
+        //mContext = context.getApplicationContext();
+        //mDatabase = new NoteBaseHelper(mContext).getWritableDatabase();
         mNotes = new ArrayList<>();
         Note note = new Note();
         note.setTitle("Example");
@@ -54,7 +48,7 @@ public class NoteHolder {
     }
 
     public List<Note> getNotes() {
-        List<Note> notes = new ArrayList<>();
+     /* List<Note> notes = new ArrayList<>();
 
         NoteCursorWrapper cursor = queryNotes(null, null);
 
@@ -67,11 +61,12 @@ public class NoteHolder {
             cursor.close();
 
         }
-        return notes;
+        return notes;*/
+        return mNotes;
     }
 
 
-    public void updateNote(Note note) {
+/*    public void updateNote(Note note) {
         String uuidString = note.getId().toString();
         ContentValues values = getContentValues(note);
 
@@ -79,10 +74,15 @@ public class NoteHolder {
                 values,
                 NoteTable.Cols.UUID + " = ?",
                 new String[]{uuidString});
-    }
+    }*/
 
     public Note getNote(UUID id) {
-
+        for (Note note : mNotes) {
+            if (note.getId().equals(id)) {
+                return note;
+            }
+        }
+/*
         NoteCursorWrapper cursor = queryNotes(
                 NoteTable.Cols.UUID + " = ?",
                 new String[]{id.toString()}
@@ -97,19 +97,20 @@ public class NoteHolder {
             return cursor.getNote();
         } finally {
             cursor.close();
-        }
+        }*/
+        return null;
     }
 
-    private static ContentValues getContentValues(Note note) {
+/*    private static ContentValues getContentValues(Note note) {
         ContentValues values = new ContentValues();
         values.put(NoteTable.Cols.UUID, note.getId().toString());
         values.put(NoteTable.Cols.TITLE, note.getTitle());
         values.put(NoteTable.Cols.DATE, note.getDateEdited().getTime());
         values.put(NoteTable.Cols.SOLVED, note.isCompleted() ? 1 : 0);
         return values;
-    }
+    }*/
 
-    private NoteCursorWrapper queryNotes(String whereClause, String[] whereArgs) {
+ /*   private NoteCursorWrapper queryNotes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 NoteTable.NAME,
                 null,
@@ -119,5 +120,5 @@ public class NoteHolder {
                 null,
                 null);
         return new NoteCursorWrapper(cursor);
-    }
+    }*/
 }

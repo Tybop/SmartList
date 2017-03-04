@@ -18,7 +18,7 @@ public class NoteCursorWrapper extends CursorWrapper {
         super(cursor);
     }
 
-    public Note getNote() {
+  /*  public Note getNote() {
         String uuidString = getString(getColumnIndex(NoteTable.Cols.UUID));
         String title = getString(getColumnIndex(NoteTable.Cols.TITLE));
         long date = getLong(getColumnIndex(NoteTable.Cols.DATE));
@@ -30,6 +30,6 @@ public class NoteCursorWrapper extends CursorWrapper {
         note.setCompleted(isCompleted != 0);
 
         return note;
-    }
+    }*/
 
 }

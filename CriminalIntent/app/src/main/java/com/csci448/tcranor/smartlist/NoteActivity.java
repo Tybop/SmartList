@@ -14,6 +14,7 @@ public class NoteActivity extends SingleFragmentActivity {
         Intent intent = new Intent(packageContext, NoteActivity.class);
         intent.putExtra(EXTRA_CRIME_ID, crimeID);
         return intent;
+
     }
 
     @Override

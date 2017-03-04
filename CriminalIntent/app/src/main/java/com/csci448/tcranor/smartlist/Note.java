@@ -54,13 +54,14 @@ public class Note {
 
     public Note() {
         mId = UUID.randomUUID();
-        mDetails = new String();
+        mDateEdited = new Date();
+        //mDetails = new String();
     }
 
-    public Note(UUID id) {
+/*    public Note(UUID id) {
         mId = id;
         mDateEdited = new Date();
-    }
+    }*/
 
     public UUID getId() {
         return mId;
