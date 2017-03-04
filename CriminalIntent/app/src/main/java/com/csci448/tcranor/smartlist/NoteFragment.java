@@ -100,6 +100,11 @@ public class NoteFragment extends Fragment {
                 mNote.setTitle(s.toString());
             }
 
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Also Blank
+            }
+        });
 
         mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -107,12 +112,6 @@ public class NoteFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mPrioritySpinner.setAdapter(adapter);
         mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //Also Blank
-            }
-        });
 
         return v;
     }
