@@ -4,7 +4,6 @@
     <string name="note_title_label">Title</string>
     <string name="note_details_hint">Enter the details of your To-Do.</string>
     <string name="note_details_label">Details</string>
-    <string name="note_completed_label">Completed</string>
     <string name="details_picker_title">Details: </string>
     <string name="new_note">New To-Do</string>
     <string name="show_subtitle">Subtitle</string>
@@ -12,4 +11,6 @@
     <string name="due_date_label">Due Date</string>
     <string name="priority_label">Priority</string>
     <string name="group_label">Group</string>
+    <string name="group_hint">Type what group you\'d like this To-Do in.</string>
+    <string name="submit_button">Submit</string>
 </resources>

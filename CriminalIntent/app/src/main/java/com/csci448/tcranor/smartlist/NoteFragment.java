@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import java.util.Date;
 import java.util.UUID;
@@ -24,7 +26,9 @@ public class NoteFragment extends Fragment {
     private Note mNote;
     private EditText mTitleField;
     private EditText mDetailsField;
-    private CheckBox mCompletedCheckBox;
+    private EditText mGroupField;
+    private DatePicker mDueDate;
+    private TimePicker mDueTime;
 
     public static NoteFragment newInstance(UUID noteId){
         Bundle args = new Bundle();
@@ -86,14 +90,29 @@ public class NoteFragment extends Fragment {
             }
         });
 
-        mCompletedCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
-        mCompletedCheckBox.setChecked(mNote.isCompleted());
-        mCompletedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mGroupField = (EditText) v.findViewById(R.id.note_group);
+        mGroupField.setText(mNote.getGroup().toString());
+        mGroupField.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mNote.setCompleted(isChecked);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //Left Blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mNote.setGroup(s.toString());
+                mNote.setDateEdited(new Date());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Also Blank
             }
         });
+
+        mDueDate = (DatePicker) v.findViewById(R.id.due_date_picker);
+
+
 
         return v;
     }
