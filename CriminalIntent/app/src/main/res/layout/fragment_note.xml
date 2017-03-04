@@ -39,23 +39,32 @@
         android:layout_height="wrap_content"
         android:text="@string/due_date_label"/>
 
+    <DatePicker
+        android:id="@+id/due_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginLeft="16dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/due_date_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"/>
-
-        <EditText
+        <TimePicker
             android:id="@+id/due_time_picker"
             android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_marginLeft="8dp"
+            android:timePickerMode="spinner"/>
+
+        <Button
+            android:id="@+id/date_submit_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginTop="15dp"
+            android:text="@string/submit_button"/>
 
     </LinearLayout>
 
@@ -64,6 +73,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/group_label"/>
+
+    <EditText
+        android:id="@+id/note_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/group_hint"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
@@ -74,5 +91,6 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 
 </LinearLayout>
