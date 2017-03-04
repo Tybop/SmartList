@@ -7,9 +7,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.UUID;
 
@@ -24,6 +26,7 @@ public class NoteFragment extends Fragment {
     private EditText mTitleField;
     private EditText mDetailsField;
     private CheckBox mCompletedCheckBox;
+    private Spinner mPrioritySpinner;
 
     public static NoteFragment newInstance(UUID noteId){
         Bundle args = new Bundle();
@@ -84,16 +87,12 @@ public class NoteFragment extends Fragment {
         });
 
 
-
-
-        mCompletedCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
-        mCompletedCheckBox.setChecked(mNote.isCompleted());
-        mCompletedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mNote.setCompleted(isChecked);
-            }
-        });
+        mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.priority_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mPrioritySpinner.setAdapter(adapter);
+        mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
 
         return v;
     }

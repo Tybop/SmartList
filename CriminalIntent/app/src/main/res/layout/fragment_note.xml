@@ -84,14 +84,8 @@
     <Spinner
         android:id="@+id/note_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <CheckBox
-        android:id="@+id/note_completed"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/note_completed_label"/>
+        android:layout_marginLeft="16dp"/>
+
 
 </LinearLayout>
