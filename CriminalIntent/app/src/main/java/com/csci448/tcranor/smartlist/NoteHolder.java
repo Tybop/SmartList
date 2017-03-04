@@ -1,6 +1,9 @@
 package com.csci448.tcranor.smartlist;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.csci448.tcranor.smartlist.database.NoteBaseHelper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +17,8 @@ import java.util.UUID;
 public class NoteHolder {
     private static NoteHolder sNoteHolder;
     private List<Note> mNotes;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static NoteHolder get(Context context) {
         if (sNoteHolder == null) {
@@ -28,6 +33,8 @@ public class NoteHolder {
     }
 
     private NoteHolder(Context context) {
+        mContext = context.getApplicationContext();
+        mDatabase = new NoteBaseHelper(mContext).getWritableDatabase();
         mNotes = new ArrayList<>();
 
         Note note = new Note();
