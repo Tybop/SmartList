@@ -52,16 +52,10 @@ public class Note {
 
     private boolean mCompleted;
 
-    public Note() {
+    public Note(){
         mId = UUID.randomUUID();
-        mDateEdited = new Date();
-        //mDetails = new String();
+        mDetails = new String();
     }
-
-/*    public Note(UUID id) {
-        mId = id;
-        mDateEdited = new Date();
-    }*/
 
     public UUID getId() {
         return mId;

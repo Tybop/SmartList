@@ -7,13 +7,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -26,14 +23,9 @@ public class NoteFragment extends Fragment {
     private Note mNote;
     private EditText mTitleField;
     private EditText mDetailsField;
-    private EditText mGroupField;
-    private DatePicker mDueDate;
-    private Button mSubmitButton;
-    private Spinner mPrioritySpinner;
+    private CheckBox mCompletedCheckBox;
 
-
-
-    public static NoteFragment newInstance(UUID noteId) {
+    public static NoteFragment newInstance(UUID noteId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_NOTE_ID, noteId);
 
@@ -46,21 +38,14 @@ public class NoteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID noteId = (UUID) getArguments().getSerializable(ARG_NOTE_ID);
-        mNote = NoteTemplate.get(getActivity()).getNote(noteId);
+        mNote = NoteHolder.get(getActivity()).getNote(noteId);
     }
 
-/*    @Override
-    public void onPause() {
-        super.onPause();
-
-        NoteTemplate.get(getActivity()).updateNote(mNote);
-    }*/
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
-        mTitleField = (EditText) v.findViewById(R.id.note_title);
+        mTitleField = (EditText)v.findViewById(R.id.note_title);
         mTitleField.setText(mNote.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,7 +56,6 @@ public class NoteFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mNote.setTitle(s.toString());
-                mNote.setDateEdited(new Date());
             }
 
             @Override
@@ -91,7 +75,6 @@ public class NoteFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mNote.setDetails(s.toString());
-                mNote.setDateEdited(new Date());
             }
 
             @Override
@@ -100,44 +83,14 @@ public class NoteFragment extends Fragment {
             }
         });
 
-        mGroupField = (EditText) v.findViewById(R.id.note_group);
-        mGroupField.setText(mNote.getGroup().toString());
-        mGroupField.addTextChangedListener(new TextWatcher() {
+        mCompletedCheckBox = (CheckBox)v.findViewById(R.id.note_completed);
+        mCompletedCheckBox.setChecked(mNote.isCompleted());
+        mCompletedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //Left Blank
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mNote.setGroup(s.toString());
-                mNote.setDateEdited(new Date());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //Also Blank
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mNote.setCompleted(isChecked);
             }
         });
-
-        mDueDate = (DatePicker) v.findViewById(R.id.due_date_picker);
-
-        mSubmitButton = (Button) v.findViewById(R.id.date_submit_button);
-        mSubmitButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view){
-                Date tmpDate = new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth());
-                mNote.setDueDate(tmpDate);
-            }
-        });
-
-
-        mPrioritySpinner = (Spinner) v.findViewById(R.id.priority_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.priority_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mPrioritySpinner.setAdapter(adapter);
-        mNote.setPriority((int)mPrioritySpinner.getSelectedItem());
 
         return v;
     }

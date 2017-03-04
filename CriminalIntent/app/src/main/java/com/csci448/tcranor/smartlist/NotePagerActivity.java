@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,7 +19,7 @@ import java.util.UUID;
 
 public class NotePagerActivity extends AppCompatActivity {
 
-    private static final String EXTRA_NOTE_ID = "com.csci448.tcranor.criminalintent.note_id";
+    private static final String EXTRA_NOTE_ID = "com.csci448.tybrown.criminalintent.note_id";
     private ViewPager mViewPager;
     private List<Note> mNotes;
 
@@ -37,7 +38,7 @@ public class NotePagerActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.activity_note_pager_view_pager);
 
-        mNotes = NoteTemplate.get(this).getNotes();
+        mNotes = NoteHolder.get(this).getNotes();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
