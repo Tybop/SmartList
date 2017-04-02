@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -68,8 +67,13 @@ public class NoteListFragment extends Fragment {
                 Intent intent = NotePagerActivity.newIntent(getActivity(), note.getId());
                 startActivity(intent);
                 return true;
-            case R.id.menu_item_sort_notes:
-                Toast.makeText(getContext(), "This will sort by group or priority or by date in the finished app", Toast.LENGTH_SHORT).show();
+            case R.id.menu_item_sort_by_date:
+                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDate();
+                updateUI();
+            case R.id.menu_item_sort_by_priority:
+                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
+            case R.id.menu_item_sort_by_group:
+                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByGroup();
             default:
                 return super.onOptionsItemSelected(item);
         }

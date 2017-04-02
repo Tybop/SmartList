@@ -3,6 +3,8 @@ package com.csci448.tcranor.smartlist;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +41,36 @@ public class NoteHolder {
         note.setGroup("General");
         mNotes.add(note);
 
+    }
+
+    public void sortByDate() {
+        Collections.sort(mNotes, new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return n1.getDueDate().compareTo(n2.getDueDate());
+            }
+
+        });
+    }
+
+    public void sortByPriority() {
+        Collections.sort(mNotes, new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return n1.getPriority() - n2.getPriority();
+            }
+
+        });
+    }
+
+    public void sortByGroup() {
+        Collections.sort(mNotes, new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return n1.getGroup().compareTo(n2.getGroup());
+            }
+
+        });
     }
 
     public List<Note> getNotes() {
