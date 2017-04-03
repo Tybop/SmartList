@@ -74,7 +74,7 @@ public class NoteFragment extends Fragment {
         });
 
         mDetailsField = (EditText) v.findViewById(R.id.note_details);
-        mDetailsField.setText(mNote.getDetails().toString());
+        mDetailsField.setText(mNote.getDetails());
         mDetailsField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
