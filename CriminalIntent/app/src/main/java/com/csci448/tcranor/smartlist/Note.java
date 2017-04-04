@@ -57,6 +57,11 @@ public class Note {
         mDetails = new String();
     }
 
+    public Note(UUID uuid){
+        mId = uuid;
+        mDetails = new String();
+    }
+
     public UUID getId() {
         return mId;
     }

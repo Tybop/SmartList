@@ -51,6 +51,13 @@ public class NoteFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        NoteHolder.get(getActivity()).updateCrime(mNote);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_note, container, false);
 
