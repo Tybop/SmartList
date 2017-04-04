@@ -28,7 +28,7 @@ public class NoteBaseHelper extends SQLiteOpenHelper {
                 + NoteTable.Cols.PRIORITY + ", "
                 + NoteTable.Cols.EDITDATE + ", "
                 + NoteTable.Cols.DETAILS + ", "
-                + NoteTable.Cols.GROUP +
+                + NoteTable.Cols.TYPE +
                 ")");
     }
 

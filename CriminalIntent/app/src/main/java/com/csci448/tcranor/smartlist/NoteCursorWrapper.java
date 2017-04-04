@@ -25,7 +25,7 @@ public class NoteCursorWrapper extends CursorWrapper {
         int priority = getInt(getColumnIndex(NoteTable.Cols.PRIORITY));
         long editdate = getLong(getColumnIndex(NoteTable.Cols.EDITDATE));
         String detail = getString(getColumnIndex(NoteTable.Cols.DETAILS));
-        String group = getString(getColumnIndex(NoteTable.Cols.GROUP));
+        String type = getString(getColumnIndex(NoteTable.Cols.TYPE));
 
         Note note = new Note(UUID.fromString(uuidString));
         note.setTitle(title);
@@ -33,7 +33,7 @@ public class NoteCursorWrapper extends CursorWrapper {
         note.setCompleted(isCompleted != 0);
         note.setDueDate(new Date(duedate));
         note.setDetails(detail);
-        note.setGroup(group);
+        note.setGroup(type);
         note.setPriority(priority);
 
         return note;

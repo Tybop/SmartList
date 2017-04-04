@@ -10,7 +10,6 @@ import com.csci448.tcranor.smartlist.NoteDbSchema.NoteTable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,14 +39,6 @@ public class NoteHolder {
     private NoteHolder(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new NoteBaseHelper(mContext).getWritableDatabase();
-
-        Note note = new Note();
-        note.setTitle("Example");
-        note.setCompleted(false);
-        note.setDetails("An example note.");
-        note.setDueDate(new Date());
-        note.setPriority(5);
-        note.setGroup("General");
 
     }
 
@@ -129,7 +120,7 @@ public class NoteHolder {
         values.put(NoteTable.Cols.PRIORITY, note.getPriority());
         values.put(NoteTable.Cols.EDITDATE, note.getDateEdited().getTime());
         values.put(NoteTable.Cols.DETAILS, note.getDetails());
-        values.put(NoteTable.Cols.GROUP, note.getGroup());
+        values.put(NoteTable.Cols.TYPE, note.getGroup());
 
         return values;
     }

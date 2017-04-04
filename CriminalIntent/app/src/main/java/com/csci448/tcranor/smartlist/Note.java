@@ -18,6 +18,8 @@ public class Note {
     private Date mDateEdited;
 
     public Date getDateEdited() {
+        if (mDateEdited == null)
+            return new Date();
         return mDateEdited;
     }
 
@@ -27,6 +29,8 @@ public class Note {
 
 
     public Date getDueDate() {
+        if (mDueDate == null)
+            return new Date();
         return mDueDate;
     }
 
@@ -53,8 +57,10 @@ public class Note {
     private boolean mCompleted;
 
     public Note(){
+
         mId = UUID.randomUUID();
         mDetails = new String();
+
     }
 
     public Note(UUID uuid){
