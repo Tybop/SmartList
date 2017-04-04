@@ -43,69 +43,75 @@ public class NoteHolder {
     }
 
     public List<Note> sortByDate() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return n1.getDueDate().compareTo(n2.getDueDate());
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> sortByPriority() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return n1.getPriority() - n2.getPriority();
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> sortByGroup() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return n1.getGroup().compareTo(n2.getGroup());
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> sortByDateEdited() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return n1.getDateEdited().compareTo(n2.getDateEdited());
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> sortByTitle() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return n1.getTitle().compareTo(n2.getTitle());
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> sortBySolved() {
-        Collections.sort(getNotes(), new Comparator<Note>() {
+        List<Note> tmp = getNotes();
+        Collections.sort(tmp, new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
                 return Boolean.compare(n1.isCompleted(), n2.isCompleted());
             }
 
         });
-        return getNotes();
+        return tmp;
     }
 
     public List<Note> getNotes() {

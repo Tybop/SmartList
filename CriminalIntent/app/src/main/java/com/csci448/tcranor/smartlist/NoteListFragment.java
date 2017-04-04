@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,21 +71,27 @@ public class NoteListFragment extends Fragment {
             case R.id.menu_item_sort_by_date:
                 List<Note> dateNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDate();
                 refreshUI(dateNotes);
+                return true;
             case R.id.menu_item_sort_by_priority:
-                List<Note> priortyNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
-                refreshUI(priortyNotes);
+                List<Note> priorityNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
+                refreshUI(priorityNotes);
+                return true;
             case R.id.menu_item_sort_by_group:
                 List<Note> groupNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByGroup();
                 refreshUI(groupNotes);
+                return true;
             case R.id.menu_item_sort_by_date_edited:
                 List<Note> dateEditedNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDateEdited();
                 refreshUI(dateEditedNotes);
+                return true;
             case R.id.menu_item_sort_by_solved:
                 List<Note> solvedNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortBySolved();
                 refreshUI(solvedNotes);
+                return true;
             case R.id.menu_item_sort_by_title:
                 List<Note> titleNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByTitle();
                 refreshUI(titleNotes);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -110,6 +117,7 @@ public class NoteListFragment extends Fragment {
         } else {
             mAdapter.setNotes(sortedNotes);
             mAdapter.notifyDataSetChanged();
+
         }
     }
 
