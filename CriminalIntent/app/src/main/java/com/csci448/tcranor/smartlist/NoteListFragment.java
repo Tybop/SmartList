@@ -113,14 +113,14 @@ public class NoteListFragment extends Fragment {
         }
     }
 
-    private class NoteHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class NoteHold extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Note mNote;
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private CheckBox mSolvedCheckBox;
 
-        public NoteHolder(View itemView) {
+        public NoteHold(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
@@ -146,7 +146,7 @@ public class NoteListFragment extends Fragment {
 
     }
 
-    private class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
+    private class NoteAdapter extends RecyclerView.Adapter<NoteHold> {
         private List<Note> mNotes;
 
         public NoteAdapter(List<Note> notes) {
@@ -154,14 +154,14 @@ public class NoteListFragment extends Fragment {
         }
 
         @Override
-        public NoteHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public NoteHold onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             View view = layoutInflater.inflate(R.layout.list_item_note, parent, false);
-            return new NoteHolder(view);
+            return new NoteHold(view);
         }
 
         @Override
-        public void onBindViewHolder(NoteHolder holder, int position) {
+        public void onBindViewHolder(NoteHold holder, int position) {
             Note note = mNotes.get(position);
             holder.bindNote(note);
         }

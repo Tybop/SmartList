@@ -127,13 +127,20 @@ public class NoteFragment extends Fragment {
         mPrioritySpinner.setAdapter(adapter);
         mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
 
+
         mDueDate = (DatePicker) v.findViewById(R.id.note_date);
-        if (mNote.getDueDate() != null) {mDueDate.updateDate(mNote.getDueDate().getYear(), mNote.getDueDate().getMonth(), mNote.getDueDate().getDay());} //TODO: fix the day skipping bug
+        if (mNote.getDueDate() != null) {
+            long dueDate = mNote.getDueDate().getTime();
+            Date tmp = new Date(dueDate);
+            mDueDate.updateDate(tmp.getYear(), tmp.getMonth(), tmp.getDay());
+        } //TODO: fix the day skipping bug
+
         mSubmitButton = (Button) v.findViewById(R.id.submit_button);
         mSubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 mNote.setDueDate(new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth()));
+                //System.out.println(mDueDate.getYear() + " " + mDueDate.getMonth() + " " + mDueDate.getDayOfMonth());
             }
         });
 
