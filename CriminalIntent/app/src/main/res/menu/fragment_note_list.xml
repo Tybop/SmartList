@@ -22,15 +22,27 @@
         <menu>
             <item
                 android:id="@+id/menu_item_sort_by_date"
-                android:title="Sort by Date"
+                android:title="Date"
                 />
             <item
                 android:id="@+id/menu_item_sort_by_priority"
-                android:title="Sort by Priority"
+                android:title="Priority"
                 />
             <item
                 android:id="@+id/menu_item_sort_by_group"
-                android:title="Sort by Group"
+                android:title="Group"
+                />
+            <item
+                android:id="@+id/menu_item_sort_by_date_edited"
+                android:title="Date edited"
+                />
+            <item
+                android:id="@+id/menu_item_sort_by_title"
+                android:title="Title"
+                />
+            <item
+                android:id="@+id/menu_item_sort_by_solved"
+                android:title="Solved"
                 />
         </menu>
     </item>

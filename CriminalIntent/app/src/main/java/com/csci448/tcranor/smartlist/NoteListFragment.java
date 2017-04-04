@@ -68,12 +68,23 @@ public class NoteListFragment extends Fragment {
                 startActivity(intent);
                 return true;
             case R.id.menu_item_sort_by_date:
-                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDate();
-                updateUI();
+                List<Note> dateNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDate();
+                refreshUI(dateNotes);
             case R.id.menu_item_sort_by_priority:
-                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
+                List<Note> priortyNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
+                refreshUI(priortyNotes);
             case R.id.menu_item_sort_by_group:
-                com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByGroup();
+                List<Note> groupNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByGroup();
+                refreshUI(groupNotes);
+            case R.id.menu_item_sort_by_date_edited:
+                List<Note> dateEditedNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDateEdited();
+                refreshUI(dateEditedNotes);
+            case R.id.menu_item_sort_by_solved:
+                List<Note> solvedNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortBySolved();
+                refreshUI(solvedNotes);
+            case R.id.menu_item_sort_by_title:
+                List<Note> titleNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByTitle();
+                refreshUI(titleNotes);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -88,6 +99,16 @@ public class NoteListFragment extends Fragment {
             mNoteRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.setNotes(notes);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void refreshUI(List<Note> sortedNotes) {
+        if (mAdapter == null) {
+            mAdapter = new NoteAdapter(sortedNotes);
+            mNoteRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setNotes(sortedNotes);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -150,7 +171,7 @@ public class NoteListFragment extends Fragment {
             return mNotes.size();
         }
 
-        public void setNotes(List<Note> notes){
+        public void setNotes(List<Note> notes) {
             mNotes = notes;
         }
 

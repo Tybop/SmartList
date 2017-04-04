@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="D:\AndroidStudioProjects\SmartList\CriminalIntent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\timot\Desktop\smartlist\SmartList\CriminalIntent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="D:\AndroidStudioProjects\SmartList\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ffd772ca8c5273c2251077292e5aec525897e0c3\classes.dex" />
+        <dex dex="C:\Users\timot\Desktop\smartlist\SmartList\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_5b1b0feb9117d2e2d1cfe7b255eb1838bdc70d9d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\AndroidStudioProjects\SmartList\CriminalIntent\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\timot\Desktop\smartlist\SmartList\CriminalIntent\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="937cd60b8d1954ad0d83acacde71ff1a5b2a4bad">
-        <dex dex="D:\AndroidStudioProjects\SmartList\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_83fc4b5bdc2a52eed65d3cc17f07bad5beb0be63\classes.dex" />
+        sha1="1b92363e2e73852606fcc7af78c44819d8d8caae">
+        <dex dex="C:\Users\timot\Desktop\smartlist\SmartList\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e49c2337fc702b1ccdaf683ba8b9fc3c5f83ce78\classes.dex" />
     </item>
 
 </items>

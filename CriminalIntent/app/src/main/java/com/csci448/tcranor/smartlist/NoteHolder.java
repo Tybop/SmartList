@@ -42,7 +42,7 @@ public class NoteHolder {
 
     }
 
-    public void sortByDate() {
+    public List<Note> sortByDate() {
         Collections.sort(getNotes(), new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
@@ -50,9 +50,10 @@ public class NoteHolder {
             }
 
         });
+        return getNotes();
     }
 
-    public void sortByPriority() {
+    public List<Note> sortByPriority() {
         Collections.sort(getNotes(), new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
@@ -60,9 +61,10 @@ public class NoteHolder {
             }
 
         });
+        return getNotes();
     }
 
-    public void sortByGroup() {
+    public List<Note> sortByGroup() {
         Collections.sort(getNotes(), new Comparator<Note>() {
             @Override
             public int compare(Note n1, Note n2) {
@@ -70,15 +72,49 @@ public class NoteHolder {
             }
 
         });
+        return getNotes();
+    }
+
+    public List<Note> sortByDateEdited() {
+        Collections.sort(getNotes(), new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return n1.getDateEdited().compareTo(n2.getDateEdited());
+            }
+
+        });
+        return getNotes();
+    }
+
+    public List<Note> sortByTitle() {
+        Collections.sort(getNotes(), new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return n1.getTitle().compareTo(n2.getTitle());
+            }
+
+        });
+        return getNotes();
+    }
+
+    public List<Note> sortBySolved() {
+        Collections.sort(getNotes(), new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                return Boolean.compare(n1.isCompleted(), n2.isCompleted());
+            }
+
+        });
+        return getNotes();
     }
 
     public List<Note> getNotes() {
         List<Note> notes = new ArrayList<>();
 
         NoteCursorWrapper cursor = queryCrimes(null, null);
-        try{
+        try {
             cursor.moveToFirst();
-            while(!cursor.isAfterLast()){
+            while (!cursor.isAfterLast()) {
                 notes.add(cursor.getNote());
                 cursor.moveToNext();
             }
@@ -90,28 +126,28 @@ public class NoteHolder {
     }
 
     public Note getNote(UUID id) {
-        NoteCursorWrapper cursor = queryCrimes(NoteTable.Cols.UUID + " = ?", new String[] {id.toString()});
+        NoteCursorWrapper cursor = queryCrimes(NoteTable.Cols.UUID + " = ?", new String[]{id.toString()});
 
-        try{
-            if (cursor.getCount() == 0){
+        try {
+            if (cursor.getCount() == 0) {
                 return null;
             }
 
             cursor.moveToFirst();
             return cursor.getNote();
-        }finally {
+        } finally {
             cursor.close();
         }
     }
 
-    public void updateCrime(Note note){
+    public void updateCrime(Note note) {
         String uuidString = note.getId().toString();
         ContentValues values = getContentValues(note);
 
-        mDatabase.update(NoteTable.NAME, values, NoteTable.Cols.UUID + " = ?", new String[] {uuidString});
+        mDatabase.update(NoteTable.NAME, values, NoteTable.Cols.UUID + " = ?", new String[]{uuidString});
     }
 
-    private static ContentValues getContentValues(Note note){
+    private static ContentValues getContentValues(Note note) {
         ContentValues values = new ContentValues();
         values.put(NoteTable.Cols.UUID, note.getId().toString());
         values.put(NoteTable.Cols.TITLE, note.getTitle());

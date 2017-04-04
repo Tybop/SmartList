@@ -16,6 +16,8 @@ public class Note {
     private int mPriority;
     private String mGroup;
     private Date mDateEdited;
+    private boolean mCompleted;
+
 
     public Date getDateEdited() {
         if (mDateEdited == null)
@@ -54,7 +56,6 @@ public class Note {
         mGroup = group;
     }
 
-    private boolean mCompleted;
 
     public Note(){
 
