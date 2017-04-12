@@ -117,7 +117,7 @@ public class NoteHolder {
     public List<Note> getNotes() {
         List<Note> notes = new ArrayList<>();
 
-        NoteCursorWrapper cursor = queryCrimes(null, null);
+        NoteCursorWrapper cursor = queryNotes(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -132,7 +132,7 @@ public class NoteHolder {
     }
 
     public Note getNote(UUID id) {
-        NoteCursorWrapper cursor = queryCrimes(NoteTable.Cols.UUID + " = ?", new String[]{id.toString()});
+        NoteCursorWrapper cursor = queryNotes(NoteTable.Cols.UUID + " = ?", new String[]{id.toString()});
 
         try {
             if (cursor.getCount() == 0) {
@@ -167,7 +167,7 @@ public class NoteHolder {
         return values;
     }
 
-    private NoteCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private NoteCursorWrapper queryNotes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 NoteTable.NAME, null, whereClause, whereArgs, null, null, null
         );
