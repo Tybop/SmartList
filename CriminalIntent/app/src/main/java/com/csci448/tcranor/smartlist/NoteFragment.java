@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -120,11 +121,25 @@ public class NoteFragment extends Fragment {
 
         mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
         //mPrioritySpinner.setPrompt(Integer.toString(mNote.getPriority())); //TODO: Implement spinner showing note priority
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.priority_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.priority_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mPrioritySpinner.setAdapter(adapter);
-        mNote.setPriority(Integer.parseInt((String)mPrioritySpinner.getSelectedItem()));
+
+
+        mPrioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                mNote.setPriority(Integer.parseInt(item));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         mDueDate = (DatePicker) v.findViewById(R.id.note_date);
