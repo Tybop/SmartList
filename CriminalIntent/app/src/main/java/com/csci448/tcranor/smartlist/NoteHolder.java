@@ -146,7 +146,7 @@ public class NoteHolder {
         }
     }
 
-    public void updateCrime(Note note) {
+    public void updateNote(Note note) {
         String uuidString = note.getId().toString();
         ContentValues values = getContentValues(note);
 

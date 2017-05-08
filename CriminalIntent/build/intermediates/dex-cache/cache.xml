@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="dedfa4c2f374229909e0de892f39a94efe4dd77e">
+        sha1="bcfac9672cd334911210e516c33172330dc9a713">
         <dex dex="D:\AndroidStudioProjects\SmartList\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_83fc4b5bdc2a52eed65d3cc17f07bad5beb0be63\classes.dex" />
     </item>
     <item

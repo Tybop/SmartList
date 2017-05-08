@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -54,7 +53,7 @@ public class NoteFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        NoteHolder.get(getActivity()).updateCrime(mNote);
+        NoteHolder.get(getActivity()).updateNote(mNote);
     }
 
     @Override
@@ -141,6 +140,14 @@ public class NoteFragment extends Fragment {
             public void onClick(View view){
                 mNote.setDueDate(new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth()));
                 //System.out.println(mDueDate.getYear() + " " + mDueDate.getMonth() + " " + mDueDate.getDayOfMonth());
+            }
+        });
+
+        mCompletedCheckBox = (CheckBox) v.findViewById(R.id.check_box);
+        mCompletedCheckBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                mNote.setCompleted(mCompletedCheckBox.isChecked());
             }
         });
 
