@@ -144,6 +144,7 @@ public class NoteFragment extends Fragment {
         });
 
         mCompletedCheckBox = (CheckBox) v.findViewById(R.id.check_box);
+        mCompletedCheckBox.setChecked(mNote.isCompleted());
         mCompletedCheckBox.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
