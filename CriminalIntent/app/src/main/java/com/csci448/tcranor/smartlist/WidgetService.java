@@ -108,11 +108,11 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
             rv.setImageViewResource(R.id.checked,R.drawable.uncheck);
         }
 
-       /* if(priority<4){
+        if(priority<4){
             rv.setImageViewResource(R.id.priority,R.drawable.priority_low);
         }else if(priority==5){
             rv.setImageViewResource(R.id.priority,R.drawable.priority_high);
-        }*/
+        }
 
         // end feed row
 
