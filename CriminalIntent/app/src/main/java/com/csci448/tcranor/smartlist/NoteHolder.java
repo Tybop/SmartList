@@ -36,7 +36,7 @@ public class NoteHolder {
         mDatabase.insert(NoteTable.NAME, null, values);
     }
 
-    private NoteHolder(Context context) {
+    public NoteHolder(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new NoteBaseHelper(mContext).getWritableDatabase();
 
