@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,6 +71,10 @@ public class NoteListFragment extends Fragment {
                 List<Note> dateNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByDate();
                 refreshUI(dateNotes);
                 return true;
+            case R.id.menu_item_delete_note:
+                List<Note> toDeleteNotes= com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).deleteCheckedNotes();
+                refreshUI(toDeleteNotes);
+                return true;
             case R.id.menu_item_sort_by_priority:
                 List<Note> priorityNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).sortByPriority();
                 refreshUI(priorityNotes);
@@ -111,6 +114,7 @@ public class NoteListFragment extends Fragment {
     }
 
     private void refreshUI(List<Note> sortedNotes) {
+
         if (mAdapter == null) {
             mAdapter = new NoteAdapter(sortedNotes);
             mNoteRecyclerView.setAdapter(mAdapter);

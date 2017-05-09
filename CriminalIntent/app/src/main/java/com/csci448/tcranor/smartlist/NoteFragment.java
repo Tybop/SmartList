@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,6 +35,7 @@ public class NoteFragment extends Fragment {
     private Spinner mPrioritySpinner;
     private DatePicker mDueDate;
     private Button mSubmitButton;
+    private Button mDeleteButton;
 
     public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
@@ -49,7 +52,11 @@ public class NoteFragment extends Fragment {
         UUID noteId = (UUID) getArguments().getSerializable(ARG_NOTE_ID);
         mNote = NoteHolder.get(getActivity()).getNote(noteId);
     }
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_note_list, menu);
+    }
     @Override
     public void onPause() {
         super.onPause();

@@ -114,6 +114,13 @@ public class NoteHolder {
         return tmp;
     }
 
+    public List<Note> deleteCheckedNotes() {
+        mDatabase.execSQL("DELETE FROM " + NoteTable.NAME + " WHERE " + NoteTable.Cols.SOLVED + " = 1");
+        //mDatabase.delete(NoteTable.NAME,NoteTable.Cols.SOLVED  + "=?",  new String[] {"1"} );
+        List<Note> tmp = getNotes();
+        return tmp;
+    }
+
     public List<Note> getNotes() {
         List<Note> notes = new ArrayList<>();
 
@@ -174,5 +181,4 @@ public class NoteHolder {
 
         return new NoteCursorWrapper(cursor);
     }
-
 }
