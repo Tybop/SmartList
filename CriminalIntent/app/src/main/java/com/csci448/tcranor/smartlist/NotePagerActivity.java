@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,13 +15,19 @@ import java.util.UUID;
 /**
  * Created by Tyler's PC on 2/15/2017.
  */
-
 public class NotePagerActivity extends AppCompatActivity {
 
     private static final String EXTRA_NOTE_ID = "com.csci448.tybrown.criminalintent.note_id";
     private ViewPager mViewPager;
     private List<Note> mNotes;
 
+    /**
+     * New intent intent.
+     *
+     * @param packageContext the package context
+     * @param noteId         the note id
+     * @return the intent
+     */
     public static Intent newIntent(Context packageContext, UUID noteId) {
         Intent intent = new Intent(packageContext, NotePagerActivity.class);
         intent.putExtra(EXTRA_NOTE_ID, noteId);

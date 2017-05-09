@@ -10,20 +10,26 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.csci448.tcranor.smartlist.NoteListActivity;
-import com.csci448.tcranor.smartlist.R;
-
+/**
+ * The type Widget provider.
+ */
 public class WidgetProvider extends AppWidgetProvider {
 
+    /**
+     * The constant UPDATE_MEETING_ACTION.
+     */
     public static final String UPDATE_MEETING_ACTION = "android.appwidget.action.APPWIDGET_UPDATE";
 
+    /**
+     * The constant EXTRA_ITEM.
+     */
     public static final String EXTRA_ITEM = "com.example.edockh.EXTRA_ITEM";
 
     public void onReceive(Context context, Intent intent) {
 
         AppWidgetManager mgr = AppWidgetManager.getInstance(context);
         if (intent.getAction().equals(UPDATE_MEETING_ACTION)) {
-            int appWidgetIds[] = mgr.getAppWidgetIds(new ComponentName(context,WidgetProvider.class));
+            int appWidgetIds[] = mgr.getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
             Log.e("received", intent.getAction());
             mgr.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
         }
@@ -50,7 +56,7 @@ public class WidgetProvider extends AppWidgetProvider {
             // This is how you populate the data.
             rv.setRemoteAdapter(appWidgetIds[i], R.id.list_view, intent);
             // Trigger listview item click
-            Intent startActivityIntent = new Intent(context,NoteListActivity.class);
+            Intent startActivityIntent = new Intent(context, NoteListActivity.class);
             PendingIntent startActivityPendingIntent = PendingIntent.getActivity(context, 0, startActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             rv.setPendingIntentTemplate(R.id.list_view, startActivityPendingIntent);

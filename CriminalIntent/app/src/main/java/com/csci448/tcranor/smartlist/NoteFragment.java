@@ -23,7 +23,6 @@ import java.util.UUID;
 /**
  * Created by Tyler's PC on 2/8/2017.
  */
-
 public class NoteFragment extends Fragment {
 
     private static final String ARG_NOTE_ID = "note_id";
@@ -37,6 +36,12 @@ public class NoteFragment extends Fragment {
     private Button mSubmitButton;
     private Button mDeleteButton;
 
+    /**
+     * New instance note fragment.
+     *
+     * @param noteId the note id
+     * @return the note fragment
+     */
     public static NoteFragment newInstance(UUID noteId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_NOTE_ID, noteId);
@@ -52,11 +57,13 @@ public class NoteFragment extends Fragment {
         UUID noteId = (UUID) getArguments().getSerializable(ARG_NOTE_ID);
         mNote = NoteHolder.get(getActivity()).getNote(noteId);
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_note_list, menu);
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -128,7 +135,7 @@ public class NoteFragment extends Fragment {
 
         mPrioritySpinner = (Spinner) v.findViewById(R.id.note_spinner);
         //mPrioritySpinner.setPrompt(Integer.toString(mNote.getPriority())); //TODO: Implement spinner showing note priority
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.priority_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.priority_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mPrioritySpinner.setAdapter(adapter);
 
@@ -157,9 +164,9 @@ public class NoteFragment extends Fragment {
         } //TODO: fix the day skipping bug
 
         mSubmitButton = (Button) v.findViewById(R.id.submit_button);
-        mSubmitButton.setOnClickListener(new View.OnClickListener(){
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 mNote.setDueDate(new Date(mDueDate.getYear(), mDueDate.getMonth(), mDueDate.getDayOfMonth()));
                 //System.out.println(mDueDate.getYear() + " " + mDueDate.getMonth() + " " + mDueDate.getDayOfMonth());
             }
@@ -167,9 +174,9 @@ public class NoteFragment extends Fragment {
 
         mCompletedCheckBox = (CheckBox) v.findViewById(R.id.check_box);
         mCompletedCheckBox.setChecked(mNote.isCompleted());
-        mCompletedCheckBox.setOnClickListener(new View.OnClickListener(){
+        mCompletedCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 mNote.setCompleted(mCompletedCheckBox.isChecked());
             }
         });

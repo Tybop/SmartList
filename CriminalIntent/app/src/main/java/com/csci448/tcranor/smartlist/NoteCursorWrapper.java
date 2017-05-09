@@ -11,12 +11,21 @@ import java.util.UUID;
 /**
  * Created by timot on 3/3/2017.
  */
-
 public class NoteCursorWrapper extends CursorWrapper {
+    /**
+     * Instantiates a new Note cursor wrapper.
+     *
+     * @param cursor the cursor
+     */
     public NoteCursorWrapper(Cursor cursor) {
         super(cursor);
     }
 
+    /**
+     * Gets note.
+     *
+     * @return the note
+     */
     public Note getNote() {
         String uuidString = getString(getColumnIndex(NoteTable.Cols.UUID));
         String title = getString(getColumnIndex(NoteTable.Cols.TITLE));

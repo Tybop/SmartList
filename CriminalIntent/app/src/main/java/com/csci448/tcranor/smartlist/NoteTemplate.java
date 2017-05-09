@@ -10,26 +10,11 @@ import java.util.UUID;
 /**
  * Created by Tyler's PC on 2/15/2017.
  */
-
 public class NoteTemplate {
     private static NoteTemplate sNoteTemplate;
     //private Context mContext;
     //private SQLiteDatabase mDatabase;
     private List<Note> mNotes;
-
-    public static NoteTemplate get(Context context) {
-        if (sNoteTemplate == null) {
-            sNoteTemplate = new NoteTemplate(context);
-        }
-        return sNoteTemplate;
-    }
-
-
-    public void addNote(Note note) {
-        //ContentValues values = getContentValues(note);
-        //mDatabase.insert(NoteTable.NAME, null, values);
-        mNotes.add(note);
-    }
 
     private NoteTemplate(Context context) {
         //mContext = context.getApplicationContext();
@@ -47,6 +32,35 @@ public class NoteTemplate {
 
     }
 
+    /**
+     * Get note template.
+     *
+     * @param context the context
+     * @return the note template
+     */
+    public static NoteTemplate get(Context context) {
+        if (sNoteTemplate == null) {
+            sNoteTemplate = new NoteTemplate(context);
+        }
+        return sNoteTemplate;
+    }
+
+    /**
+     * Add note.
+     *
+     * @param note the note
+     */
+    public void addNote(Note note) {
+        //ContentValues values = getContentValues(note);
+        //mDatabase.insert(NoteTable.NAME, null, values);
+        mNotes.add(note);
+    }
+
+    /**
+     * Gets notes.
+     *
+     * @return the notes
+     */
     public List<Note> getNotes() {
      /* List<Note> notes = new ArrayList<>();
 
@@ -76,6 +90,12 @@ public class NoteTemplate {
                 new String[]{uuidString});
     }*/
 
+    /**
+     * Gets note.
+     *
+     * @param id the id
+     * @return the note
+     */
     public Note getNote(UUID id) {
         for (Note note : mNotes) {
             if (note.getId().equals(id)) {

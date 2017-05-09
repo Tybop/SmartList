@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * Created by Tyler's PC on 2/15/2017.
  */
-
 public class NoteListFragment extends Fragment {
 
     private RecyclerView mNoteRecyclerView;
@@ -72,7 +71,7 @@ public class NoteListFragment extends Fragment {
                 refreshUI(dateNotes);
                 return true;
             case R.id.menu_item_delete_note:
-                List<Note> toDeleteNotes= com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).deleteCheckedNotes();
+                List<Note> toDeleteNotes = com.csci448.tcranor.smartlist.NoteHolder.get(getActivity()).deleteCheckedNotes();
                 refreshUI(toDeleteNotes);
                 return true;
             case R.id.menu_item_sort_by_priority:
@@ -132,6 +131,11 @@ public class NoteListFragment extends Fragment {
         private TextView mDateTextView;
         private CheckBox mSolvedCheckBox;
 
+        /**
+         * Instantiates a new Note hold.
+         *
+         * @param itemView the item view
+         */
         public NoteHold(View itemView) {
             super(itemView);
 
@@ -143,6 +147,11 @@ public class NoteListFragment extends Fragment {
 
         }
 
+        /**
+         * Bind note.
+         *
+         * @param note the note
+         */
         public void bindNote(Note note) {
             mNote = note;
             mTitleTextView.setText(mNote.getTitle());
@@ -161,6 +170,11 @@ public class NoteListFragment extends Fragment {
     private class NoteAdapter extends RecyclerView.Adapter<NoteHold> {
         private List<Note> mNotes;
 
+        /**
+         * Instantiates a new Note adapter.
+         *
+         * @param notes the notes
+         */
         public NoteAdapter(List<Note> notes) {
             mNotes = notes;
         }
@@ -183,6 +197,11 @@ public class NoteListFragment extends Fragment {
             return mNotes.size();
         }
 
+        /**
+         * Sets notes.
+         *
+         * @param notes the notes
+         */
         public void setNotes(List<Note> notes) {
             mNotes = notes;
         }

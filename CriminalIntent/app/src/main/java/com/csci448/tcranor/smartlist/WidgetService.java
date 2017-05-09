@@ -1,29 +1,15 @@
 package com.csci448.tcranor.smartlist;
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-import android.widget.Toast;
-
-import com.csci448.tcranor.smartlist.Note;
-import com.csci448.tcranor.smartlist.NoteBaseHelper;
-import com.csci448.tcranor.smartlist.NoteHolder;
-import com.csci448.tcranor.smartlist.NoteListFragment;
-import com.csci448.tcranor.smartlist.R;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by EPF on 17/04/2017.
@@ -42,7 +28,7 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     private Context mContext;
     private ArrayList<String> records;
-    private List<Note>myListTitle;
+    private List<Note> myListTitle;
     private SQLiteDatabase mDatabase;
 
     public ListViewRemoteViewsFactory(Context context, Intent intent) {
@@ -65,22 +51,23 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         mDatabase = db.getWritableDatabase();
 
 
-        myListTitle=nh.getNotes();
-        records=new ArrayList<String>();
+        myListTitle = nh.getNotes();
+        records = new ArrayList<String>();
 
-        for (Note e: myListTitle){
+        for (Note e : myListTitle) {
             records.add(e.getTitle().toString());
         }
 
-        ArrayList<String>listTitle = new ArrayList<String>() {{
+        ArrayList<String> listTitle = new ArrayList<String>() {{
             add("A");
             add("B");
             add("C");
         }};
 
         //records=new ArrayList<String>();
-        Log.d("List",listTitle.get(0));
+        Log.d("List", listTitle.get(0));
     }
+
     // Given the position (index) of a WidgetItem in the array, use the item's text value in
     // combination with the app widget item XML file to construct a RemoteViews object.
     public RemoteViews getViewAt(int position) {
@@ -90,39 +77,39 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         // text based on the position.
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
         // feed row
-        String data=records.get(position);
+        String data = records.get(position);
         String title = myListTitle.get(position).getTitle();
         String details = myListTitle.get(position).getDetails();
         boolean done = myListTitle.get(position).isCompleted();
         int priority = myListTitle.get(position).getPriority();
 
-        Log.d("priority", ""+priority);
+        Log.d("priority", "" + priority);
         rv.setTextViewText(R.id.title, data);
         rv.setTextViewText(R.id.details, details);
 
         rv.getLayoutId();
 
-        if(done){
-            rv.setImageViewResource(R.id.checked,R.drawable.checked);
-        }else{
-            rv.setImageViewResource(R.id.checked,R.drawable.uncheck);
+        if (done) {
+            rv.setImageViewResource(R.id.checked, R.drawable.checked);
+        } else {
+            rv.setImageViewResource(R.id.checked, R.drawable.uncheck);
         }
 
-        if(priority<4){
-            rv.setImageViewResource(R.id.priority,R.drawable.priority_low);
-        }else if(priority==5){
-            rv.setImageViewResource(R.id.priority,R.drawable.priority_high);
+        if (priority < 4) {
+            rv.setImageViewResource(R.id.priority, R.drawable.priority_low);
+        } else if (priority == 5) {
+            rv.setImageViewResource(R.id.priority, R.drawable.priority_high);
         }
 
         // end feed row
 
-              // Next, set a fill-intent, which will be used to fill in the pending intent template
+        // Next, set a fill-intent, which will be used to fill in the pending intent template
         // that is set on the collection view in ListViewWidgetProvider.
 
         Bundle extras = new Bundle();
         extras.putInt(WidgetProvider.EXTRA_ITEM, position);
         Intent fillInIntent = new Intent();
-        fillInIntent.putExtra("TODO List",data);
+        fillInIntent.putExtra("TODO List", data);
         fillInIntent.putExtras(extras);
 
         // Make it possible to distinguish the individual on-click
@@ -137,18 +124,18 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     }
 
-    public int getCount(){
+    public int getCount() {
 
-        Log.e("size=",records.size()+"");
+        Log.e("size=", records.size() + "");
         return records.size();
 
     }
 
-    public void onDataSetChanged(){
+    public void onDataSetChanged() {
         // Fetching JSON data from server and add them to records arraylist
     }
 
-    public int getViewTypeCount(){
+    public int getViewTypeCount() {
         return 1;
     }
 
@@ -156,7 +143,7 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         return position;
     }
 
-    public void onDestroy(){
+    public void onDestroy() {
         records.clear();
     }
 
