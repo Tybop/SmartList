@@ -60,13 +60,25 @@ public class Note {
     public Note(){
 
         mId = UUID.randomUUID();
-        mDetails = new String();
-
+        mDetails = "";
+        mTitle = "";
+        mGroup = "";
+        mPriority = 1;
+        mDueDate = new Date();
+        mDateEdited = new Date();
+        mCompleted = false;
     }
 
     public Note(UUID uuid){
         mId = uuid;
-        mDetails = new String();
+        mDetails = "";
+        mTitle = "";
+        mGroup = "";
+        mPriority = 1;
+        mDueDate = new Date();
+        mDateEdited = new Date();
+        mCompleted = false;
+
     }
 
     public UUID getId() {
